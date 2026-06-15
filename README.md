@@ -1,4 +1,3 @@
-# Aspiring Chillers
 
 ### Keegan Trevillian, Michael Grosspietsch
 
