@@ -13,9 +13,7 @@
     text-align: center;  
     border: solid gray 1px;  
 }  
-.range-slider {  
-    width: 250px;  
-}  
+
 
 .step {  
     width: 45px;  
@@ -42,7 +40,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: .7;
+    opacity: .85;
     background-color: white;
     border: 1px solid black;
     padding: 20px;

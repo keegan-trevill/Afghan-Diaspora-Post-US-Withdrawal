@@ -36,7 +36,7 @@ var Jawg_Sunny = L.tileLayer('https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png
 
 
 		// Set the title content with custom styles
-		div.innerHTML = '<h1 style="color: #000000; background-color: #ffffff; padding: 15px; border: 2px solid #999999; border-radius: 2px; font-size: 28px; font-family: Georgia, sans-serif;">Afghan Diaspora in 2021</h1>';
+		div.innerHTML = '<h1 style="color: #000000; background-color: #ffffff; padding: 15px; border: 2px solid #999999; border-radius: 2px; font-size: 28px; font-family: Georgia, sans-serif;">Afghan Diaspora 2021 <br /> Post US Withdrawl</h1>';
 
 		return div;
 
@@ -61,6 +61,8 @@ var legendContent = '<div class="legend">' +
     '</div>';
 
 
+
+
 // Create a Leaflet control for the legend
 	var legendControl = L.Control.extend({
 		options: {
@@ -72,9 +74,9 @@ var legendContent = '<div class="legend">' +
 
 			// Add CSS styles to the legend
 			div.style.color = '#000000';
-			div.style.backgroundColor = '#ffffff';
+			div.style.backgroundColor = '#efe9e9';
 			div.style.padding = '30px';
-			div.style.border = '2px solid #999999';
+			div.style.border = '2px solid #090909';
 			div.style.borderRadius = '2px';
 			div.style.fontSize = '16px';
 			div.style.fontFamily = 'Georgia, sans-serif'
@@ -171,6 +173,7 @@ function processDataRef(data) {
             }
         }
     });
+   
     return attributes;
 }
 
