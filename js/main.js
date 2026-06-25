@@ -14,7 +14,8 @@ function createMap(){
     //create the map
     map = L.map('map', {
         center: [20, 0],
-        zoom: 2
+        zoom: 2,
+        
     });
 	
 // Add tile layer
@@ -99,15 +100,16 @@ map.addControl(legend);
      var container = document.createElement('div');
      container.style.position = 'absolute';
      container.style.bottom = '20px';
-     container.style.left = '70px';
+     container.style.left = '100px';
      container.style.zIndex = '1000'; // Ensure the container is layered over the map
      map.getContainer().appendChild(container);
  
-     // Add a box with white background at 0.7 opacity
+     // Add a box with white background at 0.85 opacity
      var box = document.createElement('div');
-     box.style.backgroundColor = 'rgba(255, 255, 255, 0.7)'; // White background at 0.7 opacity
+     box.style.backgroundColor = 'rgba(240, 239, 239, 1.0)'; // White background at 0.85 opacity
+     box.style.border = '1px solid black';
      box.style.padding = '10px';
-     box.style.borderRadius = '5px';
+     box.style.borderRadius = '10px';
      container.appendChild(box);
 
     // Add a close button inside the box
@@ -374,14 +376,14 @@ var average = total / features.length;
 
 
 // Define a function to handle the change event of the dropdown menu
-function dropdownChange() {
+function dropdownChange(selectAttribute) {
     // Get the selected attribute from the dropdown menu
     var selectedAttribute = document.getElementById("attributeDropdown").value;
     // Fetch the GeoJSON data
     var worldDataURL = "data/2021WorldData.geojson";
     var USDataURL = "data/USDataSIV.geojson";
     var fetchURL;
-    if (selectedAttribute === "total") {
+    if (selectedAttribute === "total" || selectAttribute === "total") {
         fetchURL = USDataURL;
     } else {
         fetchURL = worldDataURL;
@@ -393,16 +395,16 @@ function dropdownChange() {
         .then(function(json) {
             // Process the data based on the selected attribute
             var attributes;
-            if (selectedAttribute === "Refugees") {
+            if (selectedAttribute === "Refugees" || selectAttribute === "Refugees") {
                 attributes = processDataRef(json);
                 calcStatsRef(json);
-                zoomToPakistanAndIran();
+                //zoomToPakistanAndIran();
                 
-            } else if (selectedAttribute === "Asylum") {
+            } else if (selectedAttribute === "Asylum" || selectAttribute === "Asylum") {
                 attributes = processDataAsylum(json);
                 calcStatsAsylum(json);
-                zoomToGermany();
-            }  else if (selectedAttribute === "total") {
+                //zoomToGermany();
+            }  else if (selectedAttribute === "total" || selectAttribute === "total") {
                 attributes = processDataUS(json);
                 calcStatsUS(json);
                 zoomToUSA();
@@ -643,6 +645,9 @@ function zoomToPakistanAndIran() {
         [24.0, 60.0], // Southwest coordinates (Pakistan)
         [39.0, 77.0]  // Northeast coordinates (Iran)
     ];
+
+    //var circles = dropdownChange("Refugees");
+    
     var narrativeContent = "Pakistan shows the highest refugee count in 2021 with 1,490,562. Iran is the second most with " + 
     "778,054. Iran is most similar to Afghanistan in terms of language and culture, but Pakistan tends to be more receptive to" 
     + " Afghan refugees that Iran. ";
@@ -676,6 +681,9 @@ function zoomToGermany() {
         [39.7986609345133, -9.31640625], // Southwest coordinates
         [61.60639637138628, 27.421875] // Northeast coordinates
     ];
+
+    var circles = dropdownChange("Asylum");
+
     var narrativeContent = "Europe is known for Asylum seekers. Turkey takes in many refugees given its proximity to the Middle East" +
     " and its ability to coordinate with the rest of Europe to find a permanent living situation for asylum seekers. Germany is a popular hub "+
     "especially for Afghan asylum seekers given the US has its main military infrastructure in Germany, so the US is able to " +
